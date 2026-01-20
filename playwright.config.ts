@@ -31,11 +31,12 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
-    //baseURL: 'https://thefreerangetester.github.io/sandbox-automation-testing/',
-    //testIdAttribute: 'pw-id',
+    baseURL: 'https://thefreerangetester.github.io/sandbox-automation-testing/',
+    testIdAttribute: 'pw-id',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     // trace: 'on-first-retry',
     trace: 'on',
+    video: 'retain-on-failure'
   },
 
   /* Configure projects for major browsers */
@@ -61,8 +62,8 @@ export default defineConfig({
       use: {
         baseURL: 'https://api.github.com',
         extraHTTPHeaders: {
-          // Accept: 'application/vnd.github.v3+json',
-          // Authorization: `token ${process.env.API_TOKEN}`,
+          Accept: 'application/vnd.github.v3+json',
+          Authorization: `token ${process.env.API_TOKEN}`,
         },
       },
     },

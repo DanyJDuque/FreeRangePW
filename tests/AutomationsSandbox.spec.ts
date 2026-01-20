@@ -1,7 +1,6 @@
 import { test, Browser, Page, expect } from '@playwright/test';
 import { SandboxPage } from './Pages/SandboxPage';
 
-
 (async () => {
     let browser: Browser;
     let page: Page;
@@ -9,7 +8,7 @@ import { SandboxPage } from './Pages/SandboxPage';
     let textoAEscribir = 'Estoy aprendiendo Playwright 🚀';
 
     test.describe('Acciones en el Automation Sandbox', () => {
-        
+
         test('Click en Botón ID Dinámico', async ({ page }) => {
 
             await test.step('Dado que navego al Sandbox de Automation de Free Range Testers', async () => {
@@ -23,7 +22,6 @@ import { SandboxPage } from './Pages/SandboxPage';
 
                 // await expect(page.getByText('OMG, aparezco después de 3')).toBeVisible();
                 await expect(page.getByText('OMG, aparezco después de 3 segundos de haber hecho click en el botón 👻.')).toBeVisible();
-
 
                 // await botonIDDnamico.dblclick(); // Doble click
                 // await botonIDDnamico.click({button: 'right'}); // Click derecho
@@ -47,10 +45,8 @@ import { SandboxPage } from './Pages/SandboxPage';
                 // Validamos que el texto ingresado sea correcto
                 await expect(page.getByPlaceholder('Ingresá texto'), 'El texto ingresado no es correcto').toHaveValue(textoAEscribir);
 
-
                 // await page.getByPlaceholder('Ingresá texto').fill('Estoy aprendiendo Playwright 🚀');
                 // await page.getByRole('textbox', { name: 'Un aburrido texto' }).fill('Estoy aprendiendo Playwright 🚀🚀🚀');
-
             })
         })
 
@@ -69,15 +65,12 @@ import { SandboxPage } from './Pages/SandboxPage';
                 const sandboxPage = new SandboxPage(page);
                 await sandboxPage.checkPasta();
                 await expect(sandboxPage.pastaCheckbox, 'El checkbox no estaba seleccionado').toBeChecked();
-
             })
 
             await test.step('Puedo deseleccionar el checknox para Pasta', async () => {
                 await page.getByRole('checkbox', { name: 'Pasta 🍝' }).uncheck();
                 await expect(page.getByRole('checkbox', { name: 'Pasta 🍝' })).not.toBeChecked();
             })
-
-
         })
 
         test('Puedo seleccionar Radio Buttons', async ({ page }) => {
@@ -90,7 +83,6 @@ import { SandboxPage } from './Pages/SandboxPage';
                 await page.getByRole('radio', { name: 'No' }).check();
                 await expect(page.getByRole('radio', { name: 'No' }), 'El Radio Button No no estaba seleccionado').toBeChecked();
             })
-
         })
 
         test('Puedo seleccionar un item del Dropdown', async ({ page }) => {
@@ -109,7 +101,6 @@ import { SandboxPage } from './Pages/SandboxPage';
                     const element = await page.$(`select#formBasicSelect > option:is(:text("${opcion}"))`);// la del profesor
                     // const element = await page.$(`//select[@id="formBasicSelect"]/option[text()="${opcion}"]`); // otro xpath válido
 
-
                     // usando el método locator() de Playwright
                     // const element = await page.locator('select#formBasicSelect >> option', { hasText: opcion });
 
@@ -121,7 +112,6 @@ import { SandboxPage } from './Pages/SandboxPage';
                     }
                 }
             })
-
         })
 
         test('Puedo seleccionar un día del dropdown Días de la Semana', async ({ page }) => {
@@ -138,7 +128,6 @@ import { SandboxPage } from './Pages/SandboxPage';
                 await page.getByRole('button', { name: 'Día de la semana' }).click();
                 await page.getByRole('link', { name: 'Miércoles' }).click();
             })
-
         })
 
         test.fixme('Puedo subir archivos a Automation Sandbox- No Implelmentado en Prod', async ({ page }) => {
@@ -152,7 +141,6 @@ import { SandboxPage } from './Pages/SandboxPage';
                 await page.getByLabel('Upload file').setInputFiles(['pathAlArchivo.pdf', 'Invoce1.pdf', 'Invoce2.pdf']); // Subir múltiples archivos
                 await page.getByLabel('Upload file').setInputFiles([]); // Remover archivos seleccionados 
             })
-
         })
 
         test.skip('Puedo hacer un Drag and Drop de elementos en Automation Sandbox', async ({ page }) => {
@@ -164,7 +152,6 @@ import { SandboxPage } from './Pages/SandboxPage';
             await test.step('Realizo un Drag and Drop de elementos', async () => {
                 await page.getByTestId('DragFrom').dragTo(page.getByTestId('DropTo'));
             })
-
         })
 
         test('Valida la columna Nombre de la tabla estática', async ({ page }) => {
@@ -246,7 +233,5 @@ import { SandboxPage } from './Pages/SandboxPage';
                 await page.getByRole('button', { name: 'Cerrar' }).click();
             })
         })
-
-
     })
 })();
