@@ -1,13 +1,17 @@
 import { defineConfig, devices } from '@playwright/test';
-
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+*/
+import dotenv from 'dotenv';
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '.env') });
+// console.log("API_TOKEN leído en playwright.config.ts:", process.env.API_TOKEN);
 
+// Validación
+if (!process.env.API_TOKEN) {
+  throw new Error("❌ La variable API_TOKEN no está definida");
+}
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
@@ -27,8 +31,8 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
-    baseURL: 'https://thefreerangetester.github.io/sandbox-automation-testing/',
-    testIdAttribute: 'pw-id',
+    //baseURL: 'https://thefreerangetester.github.io/sandbox-automation-testing/',
+    //testIdAttribute: 'pw-id',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     // trace: 'on-first-retry',
     trace: 'on',
@@ -36,32 +40,33 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    {
-      name: 'Computadora',
-      testMatch: "/AutomationsSandbox.spec.ts",
-      use: { ...devices['Desktop Chrome'] },
-    },
-    {
-      name: 'Iphone',
-      testMatch: "/AutomationsSandbox.spec.ts",
-      use: { ...devices['iPhone 12'] },
-    },
-    {
-      name: 'iPad',
-      testMatch: "/AutomationsSandbox.spec.ts",
-      use: { ...devices['iPad (gen 7)'] },
-    },
+    // {
+    //   name: 'Computadora',
+    //   testMatch: "/AutomationsSandbox.spec.ts",
+    //   use: { ...devices['Desktop Chrome'] },
+    // },
+    // {
+    //   name: 'Iphone',
+    //   testMatch: "/AutomationsSandbox.spec.ts",
+    //   use: { ...devices['iPhone 12'] },
+    // },
+    // {
+    //   name: 'iPad',
+    //   testMatch: "/AutomationsSandbox.spec.ts",
+    //   use: { ...devices['iPad (gen 7)'] },
+    // },
     {
       name: 'API Tests',
-      testMatch: "APITest/**/*",
+      testMatch: "APITests/**/*",
       use: {
         baseURL: 'https://api.github.com',
         extraHTTPHeaders: {
-          Accept: 'application/vnd.github.v3+json',
-          Authorization: `token ${process.env.API_TOKEN}`,
+          // Accept: 'application/vnd.github.v3+json',
+          // Authorization: `token ${process.env.API_TOKEN}`,
         },
       },
     },
+
 
 
     // {
