@@ -1,4 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
+
+import { Environment } from './tests/Utils/environment';
+
+const envConfig = Environment.getConfig();
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -31,7 +36,8 @@ export default defineConfig({
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
     // baseURL: 'http://localhost:3000',
-    baseURL: 'https://thefreerangetester.github.io/sandbox-automation-testing/',
+    // baseURL: 'https://thefreerangetester.github.io/sandbox-automation-testing/',
+    baseURL: envConfig.baseURL,
     testIdAttribute: 'pw-id',
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     // trace: 'on-first-retry',
@@ -49,12 +55,12 @@ export default defineConfig({
     {
       name: 'Iphone',
       testMatch: "/AutomationsSandbox.spec.ts",
-      use: { ...devices['iPhone 12'] },
+      use: { ...devices['iPhone 12'] }
     },
     {
       name: 'iPad',
       testMatch: "/AutomationsSandbox.spec.ts",
-      use: { ...devices['iPad (gen 7)'] },
+      use: { ...devices['iPad (gen 7)'] }
     },
     {
       name: 'API Tests',
@@ -63,7 +69,7 @@ export default defineConfig({
         baseURL: 'https://api.github.com',
         extraHTTPHeaders: {
           Accept: 'application/vnd.github.v3+json',
-          Authorization: `token ${process.env.API_TOKEN}`,
+          Authorization: `token ${process.env.API_TOKEN}`
         },
       },
     },
