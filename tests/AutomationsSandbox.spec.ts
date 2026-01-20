@@ -1,5 +1,5 @@
 import { test, Browser, Page, expect } from '@playwright/test';
-import { SandboxPage } from './Pages/SandboxPage';
+import { SandboxPage } from './Pages/sandboxpage';
 
 
 (async () => {
