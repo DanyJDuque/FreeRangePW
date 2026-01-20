@@ -69,7 +69,7 @@ import { SandboxPage } from './Pages/SandboxPage';
 
             await test.step('Puedo deseleccionar el checknox para Pasta', async () => {
                 await page.getByRole('checkbox', { name: 'Pasta 🍝' }).uncheck();
-                await expect(page.getByRole('checkbox', { name: 'Pasta 🍝' })).not.toBeChecked();
+                await expect(page.getByRole('checkbox', { name: 'Pasta 🍝' }),'El checkbox no estaba deseleccionado').not.toBeChecked();
             })
         })
 
