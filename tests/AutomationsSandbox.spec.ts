@@ -1,5 +1,6 @@
 import { test, Browser, Page, expect } from '@playwright/test';
-import { escape } from 'node:querystring';
+import { SandboxPage } from './Pages/SandboxPage';
+
 
 (async () => {
     let browser: Browser;
@@ -54,15 +55,21 @@ import { escape } from 'node:querystring';
         })
 
         test('Puedo seleccionar y deseleccionar un checkbox en el @Sandbox', async ({ page, browserName }) => {
-            test.skip(browserName === 'chromium', 'No anda en chromium todavía');
+            // test.skip(browserName === 'chromium', 'No anda en chromium todavía');
             await test.step('Dado que navego al Sandbox de Automation de Free Range Testers', async () => {
                 await page.goto('https://thefreerangetester.github.io/sandbox-automation-testing/');
             })
 
             await test.step('Puedo seleccionar el checkbox para Pasta', async () => {
                 // await page.getByLabel('Pasta 🍝').check();
-                await page.getByRole('checkbox', { name: 'Pasta 🍝' }).check();
-                await expect(page.getByRole('checkbox', { name: 'Pasta 🍝' }), 'El checkbox no estaba seleccionado').toBeChecked();
+                // await page.getByRole('checkbox', { name: 'Pasta 🍝' }).check();
+                // await expect(page.getByRole('checkbox', { name: 'Pasta 🍝' }), 'El checkbox no estaba seleccionado').toBeChecked();
+
+                // Usando la clase SandboxPage
+                const sandboxPage = new SandboxPage(page);
+                await sandboxPage.checkPasta();
+                await expect(sandboxPage.pastaCheckbox, 'El checkbox no estaba seleccionado').toBeChecked();
+
             })
 
             await test.step('Puedo deseleccionar el checknox para Pasta', async () => {

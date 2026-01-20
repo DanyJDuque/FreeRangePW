@@ -40,21 +40,21 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
-    // {
-    //   name: 'Computadora',
-    //   testMatch: "/AutomationsSandbox.spec.ts",
-    //   use: { ...devices['Desktop Chrome'] },
-    // },
-    // {
-    //   name: 'Iphone',
-    //   testMatch: "/AutomationsSandbox.spec.ts",
-    //   use: { ...devices['iPhone 12'] },
-    // },
-    // {
-    //   name: 'iPad',
-    //   testMatch: "/AutomationsSandbox.spec.ts",
-    //   use: { ...devices['iPad (gen 7)'] },
-    // },
+    {
+      name: 'Computadora',
+      testMatch: "/AutomationsSandbox.spec.ts",
+      use: { ...devices['Desktop Chrome'] },
+    },
+    {
+      name: 'Iphone',
+      testMatch: "/AutomationsSandbox.spec.ts",
+      use: { ...devices['iPhone 12'] },
+    },
+    {
+      name: 'iPad',
+      testMatch: "/AutomationsSandbox.spec.ts",
+      use: { ...devices['iPad (gen 7)'] },
+    },
     {
       name: 'API Tests',
       testMatch: "APITests/**/*",
